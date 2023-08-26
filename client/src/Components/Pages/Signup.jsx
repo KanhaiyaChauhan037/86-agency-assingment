@@ -1,12 +1,21 @@
 import React from "react";
-import { Box, Text, Heading, FormLabel, Input, Button, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Heading,
+  FormLabel,
+  Input,
+  Button,
+  Image,
+  useToast,
+} from "@chakra-ui/react";
 import { SiAdobe } from "react-icons/si";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signupUser } from "../Redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import agency from "../../assets/agency.png"
+import agency from "../../assets/agency.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -17,12 +26,21 @@ const Signup = () => {
     bio: "",
     password: "",
   });
+  const isPasswordValid = userData.password.length >= 8;
 
+  const toast = useToast();
   const handleSignup = (e) => {
     e.preventDefault();
     dispatch(signupUser(userData))
       .then((res) => {
-        alert(res.response);
+        // alert(res.response);
+        toast({
+          title: res.response,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
         if (res.response === "user created successfully") {
           navigate("/login");
         }
@@ -45,10 +63,9 @@ const Signup = () => {
           w={{ base: "35%", sm: "30%", md: "50%", xl: "35%" }}
         >
           <Box display="flex" alignItems="center">
-            
             <Image w="50px" src={agency} />
             <Text ml="10px" fontWeight="bold" fontSize="30px" color="#fff">
-             Agency
+              Agency
             </Text>
           </Box>
           <Text color="#ffff" fontSize="20px" fontWeight="500">
@@ -119,6 +136,13 @@ const Signup = () => {
                 setUserData({ ...userData, password: e.target.value });
               }}
             />
+            {isPasswordValid ? (
+              <Text color="green">Password is valid!</Text>
+            ) : (
+              <Text color="red">
+                Password must be at least 8 characters long.
+              </Text>
+            )}
             <Button
               type="submit"
               w="100%"
@@ -131,7 +155,7 @@ const Signup = () => {
               color="#ffff"
               _hover="none"
             >
-              SIGN IN
+              <button disabled={!isPasswordValid}>SIGN IN</button> 
             </Button>
 
             <p

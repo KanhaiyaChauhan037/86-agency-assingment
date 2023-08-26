@@ -208,7 +208,7 @@ function formatDate(dateTimeString) {
                       }}
                     />
                   </Box>
-                  <Text>{formatDate(post.created_at)}</Text>{" "}
+                  <Text color={"gray"} fontSize={"13px"}>{formatDate(post.created_at)}</Text>{" "}
                   <Box display="flex" gap="10px">
                     <Viewmodal
                       data={data}

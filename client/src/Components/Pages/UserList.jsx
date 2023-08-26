@@ -17,7 +17,6 @@ import {
   Textarea,
   Select,
   useToast,
- 
   Table,
   Thead,
   Tbody,
@@ -25,7 +24,6 @@ import {
   Th,
   Td,
   Flex,
-
 } from "@chakra-ui/react";
 import { Navbar } from "../Navbar/Navbar";
 import axios from "axios";
@@ -129,12 +127,12 @@ const UserList = () => {
         </Heading>
 
         <Box>
-          <Table m="auto" w="80%" variant="striped" colorScheme="purple">
+          <Table m="auto" w="80%" variant="striped" colorScheme="gray">
             <Thead>
-              <Tr>
-                <Th>Name</Th>
-                <Th>Email</Th>
-                <Th>Actions</Th>
+              <Tr bg="black" color="red">
+                <Th color="#fff">Name</Th>
+                <Th color="#fff">Email</Th>
+                <Th color="#fff">Actions</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -146,6 +144,7 @@ const UserList = () => {
                     <Td>
                       <Flex
                         w="40%"
+                        gap="10px"
                         justifyContent={"space-between"}
                         alignItems={"center"}
                       >
@@ -158,8 +157,8 @@ const UserList = () => {
                           >
                             <BiShow
                               style={{
-                                width: "25px",
-                                height: "25px",
+                                width: "20px",
+                                height: "20px",
                                 cursor: "pointer",
                               }}
                             />
@@ -176,8 +175,8 @@ const UserList = () => {
                           }
                           color="green"
                           style={{
-                            width: "25px",
-                            height: "25px",
+                            width: "20px",
+                            height: "20px",
                             cursor: "pointer",
                           }}
                         />
@@ -189,8 +188,8 @@ const UserList = () => {
                           <AiFillDelete
                             onClick={() => deleteUser(user._id)}
                             style={{
-                              width: "25px",
-                              height: "25px",
+                              width: "20px",
+                              height: "20px",
                               cursor: "pointer",
                             }}
                             // color="red"

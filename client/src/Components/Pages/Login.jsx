@@ -6,7 +6,9 @@ import {
   FormLabel,
   Input,
   Button,
-  InputGroup,Image,
+  useToast,
+  InputGroup,
+  Image,
   InputRightElement,
 } from "@chakra-ui/react";
 import { SiAdobe } from "react-icons/si";
@@ -26,12 +28,19 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const toast = useToast();
   const handleSignup = (e) => {
     e.preventDefault();
     dispatch(loginUser(userData))
       .then((res) => {
-        alert(res.response);
+        // alert(res.response);
+        toast({
+          title: res.response,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
         if (res.response === "You are successfully logged in") {
           navigate("/postlist");
         }
@@ -40,6 +49,8 @@ const Login = () => {
         console.log("err", err);
       });
   };
+
+  const isPasswordValid = userData.password.length >= 8;
   return (
     <>
       <Box
@@ -106,6 +117,7 @@ const Login = () => {
                   setUserData({ ...userData, password: e.target.value });
                 }}
               />
+
               <InputRightElement width="4.5rem">
                 <Button
                   h="1.75rem"
@@ -121,6 +133,13 @@ const Login = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
+            {isPasswordValid ? (
+              <Text color="green">Password is valid!</Text>
+            ) : (
+              <Text color="red">
+                Password must be at least 8 characters long.
+              </Text>
+            )}
             <Button
               type="submit"
               w="100%"
@@ -132,7 +151,7 @@ const Login = () => {
               color="#ffff"
               _hover="none"
             >
-              LOGIN
+              <button disabled={!isPasswordValid}>LOGIN</button>
             </Button>
 
             <p

@@ -35,33 +35,21 @@ const SingleUser = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            gap="100px"
+            gap="20px"
+            mb={"15px"}
           >
-            <FaUserCircle style={{ width: "120px", height: "120px" }} />
-            <Text fontFamily="cursive" fontSize="20px" fontWeight="bold">
-              {singleUserData.name}
-            </Text>
+            <FaUserCircle mt="20px" style={{ width: "80px", height: "80px" }} />
+            <Box>
+              <Text fontSize="20px" fontWeight="bold">
+                {singleUserData.name}
+              </Text>
+              <Text mt='10px'    fontSize="18px">
+                {singleUserData.bio}
+              </Text>
+            </Box>
           </Box>
-
-          <Box display="flex" justifyContent="center" gap="20px" ml="250px">
-            <Text fontWeight="500" fontFamily="cursive" fontSize="15px">
-              Posts
-            </Text>
-            <Text fontWeight="500 " fontFamily="cursive" fontSize="15px">
-              0 followers
-            </Text>
-            <Text fontWeight="500" fontFamily="cursive" fontSize="15px">
-              0 following
-            </Text>
-          </Box>
-
-          <Box mt="10px" ml="51%">
-            <Text fontWeight="600" fontFamily="cursive" fontSize="20px">
-              {singleUserData.bio}
-            </Text>
-          </Box>
-          <Box borderTop="1px solid gray" w="90%" m="auto" mt="20px"></Box>
-          {/* <Box>all post</Box> */}
+          <hr />
+          {/* <Box borderTop="1px solid gray" w="90%" m="auto" mt="20px"></Box> */}
         </Box>
       </Box>
     </>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { Navbar } from "../Navbar/Navbar";
 import axios from "axios";
 const Analytics = () => {
@@ -50,7 +50,17 @@ const Analytics = () => {
       console.log(err);
     }
   };
-
+  function formatDate(dateTimeString) {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    };
+    return new Date(dateTimeString).toLocaleDateString(undefined, options);
+  }
   useEffect(() => {
     getTotalUsers();
     getTotalPost();
@@ -61,103 +71,84 @@ const Analytics = () => {
   return (
     <>
       <Navbar />
-      <Box>
-        <Box w="80%" m="auto" h="auto" mt="20px">
+      <Box w="90%" m="auto" mt="20px">
+        <Flex justifyContent={"space-between"} alignItems={"center"}>
+          <Text fontWeight={"600"}> Total Users : {countUser.count}</Text>
+          <Text fontWeight={"600"}> Total Posts : {countPost.count}</Text>
+        </Flex>
+
+        <Flex
+          gap="10px"
+          padding="10px"
+          borderTop="2px solid  rgb(184, 184, 284)"
+        >
           <Box
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            gap="20px"
-            color="#ffff"
-          >
-            <Heading textAlign="center" fontSize="20px " fontFamily="cursive">
-              Total Number Of Users :
-            </Heading>
-            <Text
-              textAlign="center"
-              fontSize="30px"
-              fontWeight="bold"
-              color="#ffff"
-            >
-              {countUser.count}
-            </Text>
-          </Box>
-        </Box>
-        <Box w="80%" m="auto" h="auto" mt="10px">
-          <Box
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            gap="20px"
-            color="#ffff"
-            p="5px"
+            padding="10px"
+            w="50%"
+            borderRadius={"5px"}
+            // border="1px solid  rgb(184, 184, 184)"
+            boxShadow={
+              "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;"
+            }
           >
             <Heading textAlign="center" fontSize="20px" fontFamily="cursive">
-              Total Number Of Posts :
+              Top-Five Active Users
             </Heading>
-            <Text
-              textAlign="center"
-              fontSize="30px"
-              fontWeight="bold"
-              color="#ffff"
-            >
-              {countPost.count}
-            </Text>
-          </Box>
-          <Box
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
-            gap="20px"
-            color="#ffff"
-            mt="10px"
-            p="5px"
-          >
-            <Heading textAlign="center" fontSize="20px" fontFamily="cursive">
-              Top-Five Most Liked Posts
-            </Heading>
-            {countLike &&
-              countLike.map((post) => {
+            {activeUsers &&
+              activeUsers.map((user) => {
                 return (
-                  <Box mt="20px" key={post._id}>
-                    <Box border="1px solid white" p="10px" mb="10px">
+                  <Box mt="10px" key={user._id}>
+                    <Box
+                      border="1px solid  rgb(184, 184, 184)"
+                      borderRadius={"10px"}
+                      p="10px"
+                      mb="10px"
+                    >
                       <Text fontSize="20px" fontFamily="cursive">
-                        {post.content}
+                        {user.name}
                       </Text>
-                      <p>Likes : {post.likes}</p>
+                      <p>{user.email}</p>
+                      <Text ml={"64%"} mt="10px" color="gray" fontSize={"14px"}>
+                        {formatDate(user.created_at)}
+                      </Text>{" "}
                     </Box>
                   </Box>
                 );
               })}
           </Box>
-        </Box>
-        <Box
-          bgGradient="linear(to-l, #7928CA, #FF0080)"
-          gap="20px"
-          color="#ffff"
-          p="5px"
-          w="80%"
-          m="auto"
-          mt="20px"
-        >
-          <Heading textAlign="center" fontSize="20px" fontFamily="cursive">
-            Top-Five Active Users
-          </Heading>
-          {activeUsers &&
-            activeUsers.map((user) => {
-              return (
-                <Box mt="20px" key={user._id}>
-                  <Box border="1px solid white" p="10px" mb="10px">
-                    <Text fontSize="20px" fontFamily="cursive">
-                      {user.name}
-                    </Text>
-                    <p>{user.email}</p>
-                    <p>Created_at : {user.created_at}</p>
-                  </Box>
-                </Box>
-              );
-            })}
-        </Box>
+          <Box
+            w="50%"
+            padding="10px"
+            borderRadius={"5px"}
+            boxShadow={
+              "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;"
+            }
+          >
+            <Box gap="10px" p="5px">
+              <Heading textAlign="center" fontSize="20px" fontFamily="cursive">
+                Top-Five Most Liked Posts
+              </Heading>
+              {countLike &&
+                countLike.map((post) => {
+                  return (
+                    <Box mt="10px" key={post._id}>
+                      <Box
+                        border="1px solid  rgb(184, 184, 184)"
+                        p="10px"
+                        mb="10px"
+                        borderRadius={"5px"}
+                      >
+                        <Text fontSize="20px" fontFamily="cursive">
+                          {post.content}
+                        </Text>
+                        <p>Likes : {post.likes}</p>
+                      </Box>
+                    </Box>
+                  );
+                })}
+            </Box>
+          </Box>
+        </Flex>
       </Box>
     </>
   );
