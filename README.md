@@ -20,33 +20,31 @@
 
 ### Screenshots
 
-##### Register User
+## Register User
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/ba53a657-cfb6-4d3e-b28c-3594f09329d4)
 
+## Login User
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/829033e7-f337-449c-832f-67ea9cf1acbd)
 
-##### Login User
+## Post Lists
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/8f8d9230-36f5-4d09-bd0e-411177b219fb)
 
+## Create New Post
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/3713e53c-ae20-44ba-97dd-be17203664e7)
 
+## Update Post
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/36e5a943-4ded-488b-bd17-66b7d2818fe3)
 
-##### Post Lists
+## User Lists
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/e0ceb8d0-5139-49c9-b0c7-ed71701be378)
 
+## User Lists - update user
 
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/cded5fd7-daf4-472e-9710-e83c2f143737)
 
-##### Create New Post
+## Analytics Page
 
-
-##### Update Post
-
-
-
-##### User Lists
-
-
-
-##### User Lists - update user
-
-
-
-##### Analytics Page
+![image](https://github.com/KanhaiyaChauhan037/86-agency-assingment/assets/105916244/3544c6b0-32f0-41ca-8872-20fa2945d224)
 
 
 
